@@ -88,38 +88,3 @@ class Result{
     }
     
 }
-public class Solution {
-    public static void main(String[] args) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
-        
-        String[] gNodesEdges = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
-        
-        int gNodes = Integer.parseInt(gNodesEdges[0]);
-        int gEdges = Integer.parseInt(gNodesEdges[1]);
-        
-        List<Integer> gFrom = new ArrayList<>();
-        List<Integer> gTo = new ArrayList<>();
-        List<Integer> gWeight = new ArrayList<>();
-        
-        IntStream.range(0, gEdges).forEach(i -> {
-            try {
-                String[] gFromToWeight = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
-                
-                gFrom.add(Integer.parseInt(gFromToWeight[0]));
-                gTo.add(Integer.parseInt(gFromToWeight[1]));
-                gWeight.add(Integer.parseInt(gFromToWeight[2]));
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
-        
-        int result = Result.minCost(gNodes, gFrom, gTo, gWeight);
-        
-        bufferedWriter.write(String.valueOf(result));
-        bufferedWriter.newLine();
-        
-        bufferedReader.close();
-        bufferedWriter.close();
-    }
-}
